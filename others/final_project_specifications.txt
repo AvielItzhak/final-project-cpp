@@ -1,0 +1,21 @@
+Project description located at:
+Lesson 14 -> Homework -> cpp_final_project_v1.3.2_2023-10-15.pdf
+
+Due Date: 28/10/2025 (including)
+
+Send to instructor's mail.
+
+Title: CPP final project 2506 FNAME LNAME
+(replace FNAME LNAME with your name in English)
+
+
+Body: recommeded to add your ID
+
+
+Attach: *.cpp *.hpp *.h source and header files 
+        can use .zip or .7z
+        can use visual studio code project directory with .vscode folder
+        DO NOT include executable files.
+
+
+
