@@ -14,7 +14,7 @@
 
 
 // Constructor for the Equation class:
-Equation::Equation(double a, double b, double c) : m_a(a), m_b(b), m_c(c), solutions_size(0)
+Equation::Equation(double a, double b, double c) : m_a(a), m_b(b), m_c(c), solutions_size(0), solutions(nullptr)
 {
     if (m_a == 0) // A cannot be zero for a quadratic equation
     {
@@ -66,6 +66,8 @@ Equation::Equation(const Equation& other) : m_a(other.m_a), m_b(other.m_b), m_c(
             solutions = nullptr;
             throw; // rethrow the exception
         }
+
+        std::cout << this << ": this Quadratic Equation instance created by copy." << std::endl;
     }
     else { solutions = nullptr; } // Setting solutions to nullptr if there are no solutions in other
 }
@@ -75,6 +77,7 @@ Equation& Equation::operator=(const Equation& other)
     if (this != &other) // Check if not self-assignment and then using copy-and-swap idiom    
     {
         Equation temp(other); // Create a copy of the other object
+        std::cout << temp << ": this Quadratic Equation instance created temporarily." << std::endl;
         // Swap the members with the temporary object
         std::swap(m_a, temp.m_a);
         std::swap(m_b, temp.m_b);
@@ -189,7 +192,8 @@ Equation Equation::operator-(const Equation& other) const // Two Equations subtr
 
 Equation Equation::operator-(int value) const { return Equation(m_a, m_b, m_c - value);} // Subtract integer from C coefficient
 
-Equation operator-(int value, const Equation& eq) { return Equation(eq.m_a, eq.m_b, value - eq.m_c); } // Complementary function to make subtraction commutative with int
+Equation operator-(int value, const Equation& eq) { return Equation(-eq.m_a, -eq.m_b, value - eq.m_c); } // Complementary function to make subtraction commutative with int
+// Note, due to the order of subtraction, we need to negate A and B coefficients
 
 
 // Output stream operator function:
@@ -241,21 +245,21 @@ void Equation::calculate_solutions_and_size()
 
     double discriminant = m_b * m_b - 4 * m_a * m_c; // Calculate the discriminant of the quadratic equation
 
-    if (discriminant > 0) { solutions_size = 2; } // Two real solutions
-    else if (discriminant == 0) { solutions_size = 1; } // One real solution
-    else { solutions_size = 0; } // No real solutions
-
-    if (solutions_size == 2)
-    {
+    if (discriminant > 0) // Two real solutions
+    { 
+        solutions_size = 2;
         solutions = new double[2]; // Allocate memory for two solutions
         solutions[0] = (-m_b + sqrt(discriminant)) / (2 * m_a);
         solutions[1] = (-m_b - sqrt(discriminant)) / (2 * m_a);
-    }
-    else if (solutions_size == 1)
-    {
+
+    } 
+    else if (discriminant == 0) // One real solution
+    { 
+        solutions_size = 1;
         solutions = new double[1]; // Allocate memory for one solution
-        solutions[0] = -m_b / (2 * m_a);
-    }
+        solutions[0] = -m_b / (2 * m_a); 
+    } 
+    else { solutions_size = 0; } // No real solutions
 }
 
 // Method to print the solutions:
@@ -279,30 +283,3 @@ void Equation::print_solutions() const
 }
 
 
-// Example usage and testing of the Equation class
-int main() {
-
-    Equation eq(10,20,30);
-    std::cout << eq << std::endl;
-    //should print: 10X^2 + 20X + 30 = 0
-    std::cout << eq.get_solutions_size() << std::endl;
-    //should print 0
-    eq = -20 + eq;
-    std::cout << eq << std::endl;
-    //should print: 10X^2 + 20X + 10 = 0
-    std::cout << eq.get_solutions_size() << std::endl;
-    //should print 1
-    std::cout << eq.get_solutions()[0] << std::endl;
-    //should print -1
-    std::cout << Equation(1,5,3) + Equation(2,6,4) << std::endl;
-    //should print: 3X^2 + 11X + 7 = 0
-    eq = Equation(1,3,-4);
-    std::cout << eq << std::endl;
-    //should print 1X^2 + 3X + -4 = 0
-    std::cout << eq.get_solutions_size() << std::endl;
-    //should print 2
-    std::cout << "X1 = " << eq.get_solutions()[0] << std::endl;
-    //should print: X1 = 1
-    std::cout << "X2 = " << eq.get_solutions()[1] << std::endl;
-    //should print: X2 = -4
-}

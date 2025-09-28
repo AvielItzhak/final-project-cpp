@@ -21,6 +21,16 @@
  *        The class provides methods to get and set the coefficients, retrieve the solutions,
  *        and overloads the output stream operator to print the equation in specific format:
  *                              "%.1F * x^2 + %.1F * x + %.1F = 0"
+ *
+ * @attention In addition to the project requirements, I added:
+ *            {calculate_solutions_and_size(), calculate_solutions_and_size_CTOR() and print_solutions() methods}
+
+ *            1. Subtraction operator overloading with integer and also made it commutative.
+ *            2. 2 helper methods to calculate the solutions and size, one for CTOR use only.
+ *            3. Print solutions method to print the solutions in a formatted way.
+ *
+ * @attention This files doesn't include "main" function,
+ *            it is up to the user to provide it and to make sure to handle exceptions properly.
  */
 
 

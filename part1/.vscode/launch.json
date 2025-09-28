@@ -8,16 +8,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "g++.exe - Build and debug active file",
+            "name": "g++.exe - Build and debug active file (Integrated Terminal)",
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
-              // There I have got error Property keys must be doublequotedjsonc
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": true,
+            "externalConsole": false, // **שינוי קריטי 1: מכבים את הטרמינל החיצוני**
+            //"console": "integratedTerminal", // **שינוי קריטי 2: עוברים לטרמינל הפנימי**
             "MIMode": "gdb",
             "miDebuggerPath": "C:\\mingw64\\bin\\gdb.exe",
             "setupCommands": [
@@ -25,8 +25,14 @@
                     "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
+                },
+                {
+                    "description": "Set breakpoint at main start (tbreak main)",
+                    "text": "tbreak main", 
+                    "ignoreFailures": true
                 }
             ],
+            // הסרנו את postRunTask מכיוון שהטרמינל הפנימי לא נסגר.
             "preLaunchTask": "C/C++: g++.exe build active file"
         }
     ]
