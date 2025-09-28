@@ -33,19 +33,24 @@ private:
     double* solutions; // Array of pointers to the solutions
     std::size_t solutions_size; // Number of solutions found (0, 1, or 2)
     void calculate_solutions_and_size(); // Calculate the solutions based on the coefficients and update the solutions array and solutions_size
+    void calculate_solutions_and_size_CTOR(); // for CTOR use only
 
 public:
     Equation(double a, double b, double c);
     ~Equation();
 
-    Equation(const Equation&) = delete; // Disable copy constructor
-    Equation& operator=(const Equation&) = delete; // Disable copy assignment operator
+    Equation(const Equation&); // Copy constructor
+    Equation& operator=(const Equation&); // Copy assignment operator
 
     Equation operator+(const Equation& other) const; // Overload the addition operator to add two equations coefficients and return new equation
     Equation operator+(int value) const; // Overload the addition operator to add an integer value to C coefficient and return new equation
+    friend Equation operator+(int value, const Equation& eq); // Complementary function to make addition commutative with int
+    
     Equation operator-(const Equation& other) const; // Overload the subtraction operator to subtract two equations coefficients and return new equation
     Equation operator-(int value) const; // Overload the subtraction operator to subtract an integer value from C coefficient and return new equation
-    std::ostream& operator<<(std::ostream& os) const; // Overload the output stream operator to print the equation in specific format
+    friend Equation operator-(int value, const Equation& eq); // Complementary function to make subtraction commutative with int
+    
+    friend std::ostream& operator<<(std::ostream& os, const Equation& eq); // Overload the output stream operator to print the equation in specific format
 
     double get_a() const; // Return coefficient A
     double get_b() const; // Return coefficient B
