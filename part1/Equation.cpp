@@ -74,7 +74,7 @@ Equation::Equation(const Equation& other) : m_a(other.m_a), m_b(other.m_b), m_c(
 
 Equation& Equation::operator=(const Equation& other)
 {
-    if (this != &other) // Check if not self-assignment and then using copy-and-swap idiom    
+    if (this != &other) // Check if not self-assignment and then implementing copy-and-swap idiom
     {
         Equation temp(other); // Create a copy of the other object
         std::cout << temp << ": this Quadratic Equation instance created temporarily." << std::endl;
