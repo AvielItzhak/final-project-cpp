@@ -23,7 +23,7 @@ private:
 
 public:
     Cow(const std::string& name, double temp, double breath, double heart, double milk);
-    virtual ~Cow();
+    ~Cow();
 
     bool check_health() const override; // Override the check_health function
     void print_animal_info() const override; // Override the print method to display cow's information

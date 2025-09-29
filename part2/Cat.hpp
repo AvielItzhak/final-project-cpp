@@ -19,7 +19,7 @@
 class Cat : public Animal {
 public:
     Cat(const std::string& name, double temp, double breath, double heart);
-    virtual ~Cat();
+    ~Cat();
 
     bool check_health() const override; // Override the check_health function
     void print_animal_info() const override; // Override the print method to display cat's information

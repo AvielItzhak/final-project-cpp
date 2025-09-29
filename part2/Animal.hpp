@@ -10,6 +10,7 @@
  *        based on given measurements and unique characteristics checks if the animal is healthy.
  *
  * @attention In addition, the class includes a virtual print method to display the animal's information.
+ *            And a Name getter method helper for the Vet class.
  */
 
 #ifndef ANIMAL_HPP
@@ -19,7 +20,7 @@
 
 
 class Animal {
-private:
+protected:
     std::string name;
     double temp; // Temperature in degrees Celsius
     double breath; // Respiratory rate in breaths per minute
@@ -35,7 +36,7 @@ public:
 
     virtual bool check_health() const = 0; // Pure virtual function to check health
     virtual void print_animal_info() const = 0; // additional abstract method to print animal information
-
+    const std::string& get_name() const; // Helper get method for name
 };
 
 #endif // ANIMAL_HPP

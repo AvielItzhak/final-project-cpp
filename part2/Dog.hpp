@@ -24,7 +24,7 @@ private:
 
 public:
     Dog(const std::string& name, double temp, double breath, double heart, bool is_large);
-    virtual ~Dog();
+    ~Dog();
 
     bool check_health() const override; // Override the check_health function
     void print_animal_info() const override; // Override the print method to display dog's information
