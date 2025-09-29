@@ -22,17 +22,17 @@
 class Animal {
 protected:
     std::string m_name;
-    double m_temp; // Temperature in degrees Celsius
+    double m_temp; // Temperature in Celsius
     double m_breath; // Respiratory rate in breaths per minute
     double m_heart; // Heart rate in beats per minute
 
 public:
-    Animal(const std::string& name, double temp, double breath, double heart); // Constructor
-    virtual ~Animal(); // Virtual destructor
+    Animal(const std::string& name, double temp, double breath, double heart); 
+    virtual ~Animal(); 
 
     // In the assumption that we don't want to allow copying of Animal objects
     Animal(const Animal&) = delete; // Delete copy constructor
-    Animal& operator=(const Animal&) = delete; // Delete copy assignment operator
+    Animal& operator=(const Animal&) = delete; // Delete assignment operator
 
     virtual bool check_health() const = 0; // Pure virtual function to check health
     virtual void print_animal_info() const = 0; // additional abstract method to print animal information

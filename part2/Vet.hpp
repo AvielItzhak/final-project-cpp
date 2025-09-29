@@ -14,7 +14,7 @@
 #ifndef VET_HPP
 #define VET_HPP
 
-#include <vector>
+#include <vector> // for std::vector
 #include <memory> // for std::unique_ptr
 #include "Animal.hpp"
 

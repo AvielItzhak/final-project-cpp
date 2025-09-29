@@ -21,8 +21,8 @@ public:
     Cat(const std::string& name, double temp, double breath, double heart);
     ~Cat() override; // Just to make sure
 
-    bool check_health() const override; // Override the check_health function
-    void print_animal_info() const override; // Override the print method to display cat's information
+    bool check_health() const override;
+    void print_animal_info() const override;
 };
 
 #endif // CAT_HPP
