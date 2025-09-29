@@ -7,6 +7,8 @@
  * @author Aviel Itzhak
  */
 
+#ifndef EQUATION_HPP
+#define EQUATION_HPP
 
 #include <cstddef> // for size_t
 #include <iostream> 
@@ -76,3 +78,5 @@ public:
     void print_solutions() const; // Print solutions to standard output
 
 };
+
+#endif // EQUATION_HPP
