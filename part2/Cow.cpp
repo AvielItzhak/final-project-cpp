@@ -11,25 +11,25 @@
 
 
 Cow::Cow(const std::string& name, double temp, double breath, double heart, double milk)
-    : Animal(name, temp, breath, heart), milk(milk) 
+    : Animal(name, temp, breath, heart), m_milk(milk) 
     {
         std::cout << this << ": This is Cow named " << name << " constructor." << std::endl;
     }
 
 Cow::~Cow() 
 {
-    std::cout << this << ": This is Cow named " << name << " destructor." << std::endl;
+    std::cout << this << ": This is Cow named " << m_name << " destructor." << std::endl;
 }
 
 
 bool Cow::check_health() const 
 {
     // Creating boolean variables to hold the status of each health criterion
-    bool temp_check = (temp >= 38.5 && temp <= 39.5);
-    bool breath_check = (breath >= 26 && breath <= 50);
-    bool heart_check = (heart >= 48 && heart <= 84);
-    
-    bool milk_check = (milk >= 30); // Milk production check
+    bool temp_check = (m_temp >= 38.5 && m_temp <= 39.5);
+    bool breath_check = (m_breath >= 26 && m_breath <= 50);
+    bool heart_check = (m_heart >= 48 && m_heart <= 84);
+
+    bool milk_check = (m_milk >= 30); // Milk production check
 
     return temp_check && breath_check && heart_check && milk_check; // Return true only if all criteria are met
 }
@@ -38,10 +38,10 @@ bool Cow::check_health() const
 void Cow::print_animal_info() const 
 {
     std::cout << "Cow Information:\n"
-              << "\tName: " << name << std::endl
-              << "\tTemperature: " << temp << " °C" << std::endl
-              << "\tBreath Rate: " << breath << " breaths/min" << std::endl
-              << "\tHeart Rate: " << heart << " beats/min" << std::endl
-              << "\tMilk Production: " << milk << " liters/day" << std::endl
+              << "\tName: " << m_name << std::endl
+              << "\tTemperature: " << m_temp << " °C" << std::endl
+              << "\tBreath Rate: " << m_breath << " breaths/min" << std::endl
+              << "\tHeart Rate: " << m_heart << " beats/min" << std::endl
+              << "\tMilk Production: " << m_milk << " liters/day" << std::endl
               << "\tHealth Status: " << (check_health() ? "Healthy" : "Sick") << std::endl;
 }

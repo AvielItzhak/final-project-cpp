@@ -18,15 +18,15 @@ Cat::Cat(const std::string& name, double temp, double breath, double heart)
 
 Cat::~Cat()
 {
-    std::cout << this << ": This is Cat named " << name << " destructor." << std::endl;
+    std::cout << this << ": This is Cat named " << m_name << " destructor." << std::endl;
 }
 
 bool Cat::check_health() const 
 {
     // Creating boolean variables to hold the status of each health criterion
-    bool temp_check = (temp >= 38.0 && temp <= 39.2);
-    bool breath_check = (breath >= 16 && breath <= 40);
-    bool heart_check = (heart >= 120 && heart <= 140);
+    bool temp_check = (m_temp >= 38.0 && m_temp <= 39.2);
+    bool breath_check = (m_breath >= 16 && m_breath <= 40);
+    bool heart_check = (m_heart >= 120 && m_heart <= 140);
 
     return temp_check && breath_check && heart_check; // Return true only if all criteria are met
 }
@@ -34,9 +34,9 @@ bool Cat::check_health() const
 void Cat::print_animal_info() const 
 {
     std::cout << "Cat Information:\n"
-              << "\tName: " << name << std::endl
-              << "\tTemperature: " << temp << " °C" << std::endl
-              << "\tBreath Rate: " << breath << " breaths/min" << std::endl
-              << "\tHeart Rate: " << heart << " beats/min" << std::endl
+              << "\tName: " << m_name << std::endl
+              << "\tTemperature: " << m_temp << " °C" << std::endl
+              << "\tBreath Rate: " << m_breath << " breaths/min" << std::endl
+              << "\tHeart Rate: " << m_heart << " beats/min" << std::endl
               << "\tHealth Status: " << (check_health() ? "Healthy" : "Sick") << std::endl;
 }

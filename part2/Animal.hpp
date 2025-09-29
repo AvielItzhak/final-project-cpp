@@ -21,10 +21,10 @@
 
 class Animal {
 protected:
-    std::string name;
-    double temp; // Temperature in degrees Celsius
-    double breath; // Respiratory rate in breaths per minute
-    double heart; // Heart rate in beats per minute
+    std::string m_name;
+    double m_temp; // Temperature in degrees Celsius
+    double m_breath; // Respiratory rate in breaths per minute
+    double m_heart; // Heart rate in beats per minute
 
 public:
     Animal(const std::string& name, double temp, double breath, double heart); // Constructor

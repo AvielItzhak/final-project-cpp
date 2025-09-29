@@ -19,21 +19,21 @@ Dog::Dog(const std::string& name, double temp, double breath, double heart, bool
 
 Dog::~Dog() 
 {
-    std::cout << this << ": This is Dog named " << name << " destructor." << std::endl;
+    std::cout << this << ": This is Dog named " << m_name << " destructor." << std::endl;
 }
 
 bool Dog::check_health() const 
 {
     // Creating boolean variables to hold the status of each health criterion
-    bool temp_check = (temp >= 38.0 && temp <= 39.2);
-    bool breath_check = (breath >= 10 && breath <= 35);
+    bool temp_check = (m_temp >= 38.0 && m_temp <= 39.2);
+    bool breath_check = (m_breath >= 10 && m_breath <= 35);
     bool heart_check;
 
     // Heart rate check based on size condition
     if (is_large) {  // Large dog
-        heart_check = (heart >= 60 && heart <= 100);
+        heart_check = (m_heart >= 60 && m_heart <= 100);
     } else { // Small dog
-        heart_check = (heart >= 100 && heart <= 140);
+        heart_check = (m_heart >= 100 && m_heart <= 140);
     }
 
     return temp_check && breath_check && heart_check; // Return true only if all criteria are met
@@ -42,10 +42,10 @@ bool Dog::check_health() const
 void Dog::print_animal_info() const 
 {
     std::cout << "Dog Information:\n"
-              << "\tName: " << name << std::endl
-              << "\tTemperature: " << temp << " °C" << std::endl
-              << "\tBreath Rate: " << breath << " breaths/min" << std::endl
-              << "\tHeart Rate: " << heart << " beats/min" << std::endl
+              << "\tName: " << m_name << std::endl
+              << "\tTemperature: " << m_temp << " °C" << std::endl
+              << "\tBreath Rate: " << m_breath << " breaths/min" << std::endl
+              << "\tHeart Rate: " << m_heart << " beats/min" << std::endl
               << "\tSize: " << (is_large ? "Large" : "Small") << std::endl
               << "\tHealth Status: " << (check_health() ? "Healthy" : "Sick") << std::endl;
 }

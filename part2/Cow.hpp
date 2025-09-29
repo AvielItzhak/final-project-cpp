@@ -19,11 +19,11 @@
 
 class Cow : public Animal {
 private:
-    double milk; // Unique field to determine the amount of milk produced by the cow
+    double m_milk; // Unique field to determine the amount of milk produced by the cow
 
 public:
     Cow(const std::string& name, double temp, double breath, double heart, double milk);
-    ~Cow();
+    ~Cow() override; // Just to make sure
 
     bool check_health() const override; // Override the check_health function
     void print_animal_info() const override; // Override the print method to display cow's information

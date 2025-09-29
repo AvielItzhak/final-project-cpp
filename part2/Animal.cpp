@@ -9,14 +9,14 @@
 
 
 Animal::Animal(const std::string& name, double temp, double breath, double heart)
-    : name(name), temp(temp), breath(breath), heart(heart) 
+    : m_name(name), m_temp(temp), m_breath(breath), m_heart(heart) 
     {
-        std::cout << this << ": This is Animal named " << name << " constructor." << std::endl;
+        std::cout << this << ": This is base Animal named " << name << " constructor." << std::endl;
     }
 
 Animal::~Animal() 
 {
-    std::cout << this << ": This is Animal named " << name << " destructor." << std::endl;
+    std::cout << this << ": This is base Animal named " << m_name << " destructor." << std::endl;
 }
 
-const std::string& Animal::get_name() const  { return name; } // return the name of the animal
+const std::string& Animal::get_name() const  { return m_name; } // Return the name of the animal

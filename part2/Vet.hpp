@@ -22,9 +22,10 @@ class Vet {
 private:
     std::vector<std::unique_ptr<Animal>> animals; // Vector of unique pointers to Animal objects
     
-    Vet() = default; // Default constructor
+    Vet();
     ~Vet();
 
+    // Ensuring that the singleton cannot be copied or moved
     Vet(Vet&&) = delete; // Delete move constructor
     Vet& operator=(Vet&&) = delete; // Delete move assignment operator
     Vet(const Vet&) = delete; // Delete copy constructor
@@ -33,8 +34,8 @@ private:
 public:
     static Vet& get_instance(); // Static method to get the single instance of Vet
 
-    void add_animal(Animal* && animal); // Receive an R-value to a pointer to specific animal and add it to the vector
-    void show_sick_animals() const; // Print all the sick animals in the vector
+    void add_animal(Animal* && animal); // Receive an rvalue to a pointer to specific animal and add it to the vector
+    void show_sick() const; // Print all the sick animals in the vector
     void show_sick_dogs() const; // Print all the sick dogs in the vector
 
 };

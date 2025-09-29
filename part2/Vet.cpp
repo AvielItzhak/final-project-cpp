@@ -4,6 +4,10 @@
  * @brief Implementation of the Vet singleton class that manages a collection of Animal pointers.
  * 
  * @attention The Vet class uses smart pointers (std::unique_ptr) to manage the memory of the Animal objects.
+ * 
+ * @attention This project doesn't include main function, so in order to test the Vet class,
+ *            its upon the user to create a main function that utilizes the Vet class,
+ *            and to make sure that the different animal objects are created on the heap (using new!).
  */
 
 #include "Vet.hpp"
@@ -11,29 +15,33 @@
 #include <iostream>
 
 
+Vet::Vet() 
+    : animals() // Initialize the vector of unique_ptrs
+{
+    std::cout << this << ": This is Vet constructor." << std::endl;
+}
 
-Vet& Vet::get_instance() // utilizing singleton pattern
+Vet::~Vet() // The unique pointer will automatically clean up the Animal objects
+{
+    std::cout << this << ": This Vet destructor,\n\tDestroying all animals in the collection" << std::endl;
+}
+
+
+Vet& Vet::get_instance() // Utilizing singleton pattern
 { 
     static Vet instance; 
     return instance;
 }
 
-Vet::~Vet() 
-{
-    std::cout << this << ": This Vet destructor,\n\tDestroying all animals in the collection" << std::endl;
-    // The unique_ptr will automatically clean up the Animal objects
-}
-
-
 
 void Vet::add_animal(Animal* && animal) 
 {
-    animals.push_back(std::unique_ptr<Animal>(animal)); // Transfer ownership to unique_ptr and add to vector
-    std::cout << "Added animal named to vet's collection." << std::endl;
+    animals.push_back(std::unique_ptr<Animal>(animal)); // Transfer ownership to unique pointer and add to vector
+    std::cout << "Added animal named " << animal->get_name() << " to vet's collection." << std::endl;
 }
 
 
-void Vet::show_sick_animals() const 
+void Vet::show_sick() const 
 {
     std::cout << "Sick Animals in the Vet's Collection:" << std::endl;
     bool is_all_healthy_flag = true; // Flag to check if all animals are healthy
@@ -68,6 +76,6 @@ void Vet::show_sick_dogs() const
     }
     std::cout << std::endl;
 
-    if (is_all_healthy_flag) { std::cout << "No sick dogs found." << std::endl; }
+    if (is_all_healthy_flag) { std::cout << "No sick dogs found." << std::endl; } // If all dogs are healthy
 }
 
